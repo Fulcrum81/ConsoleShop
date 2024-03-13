@@ -1,26 +1,35 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        // [0] - username, [1] - password, [2] - type
-        String[][] users = {
-                {"admin", "admin", "admin"},
-                {"user1", "qwerty", "seller"},
-                {"buyer1", "Test1234!", "buyer"}
-        };
+    static final User adminUser = new User("admin", "admin", "admin");
+    static User abcInvestGroup = new User("abcInvest", "qwerty", "seller");
+    static User vasiliPoupkine = new User("vpoupkine", "Test1234!", "buyer");
+    static User[] users = { adminUser, abcInvestGroup, vasiliPoupkine };
 
+
+    public static void main(String[] args) {
+
+        User loggedInUser = login();
+
+        switch (loggedInUser.getUserType()) {
+            case "admin" -> AdminMenu.printMenu();
+            case "seller" -> System.out.println("\nYou are logged in as seller");
+            case "buyer" -> System.out.println("\nYou are logged in as buyer");
+        }
+    }
+
+    private static User login() {
+        User loggedInUser = new User("", "", "");
         boolean isLoggedIn = false;
         Scanner scanner = new Scanner(System.in);
-
         while (!isLoggedIn) {
-            System.out.print("Введите логин: ");
+            System.out.print("Please enter login: ");
             String userLogin = scanner.nextLine();
-            System.out.print("Введите пароль: ");
+            System.out.print("Please enter password: ");
             String userPassword = scanner.nextLine();
 
-            String[] loggedInUser = new String[3];
-            for (String[] user : users) {
-                if (user[0].equals(userLogin) && user[1].equals(userPassword)) {
+            for (User user : users) {
+                if (user.getUsername().equals(userLogin) && user.getPassword().equals(userPassword)) {
                     loggedInUser = user;
                     isLoggedIn = true;
                     System.out.printf("Welcome, %s! You've logged in successfully!", userLogin);
@@ -31,7 +40,8 @@ public class Main {
                 System.out.println("Sorry, username or password is incorrect");
             }
         }
-
-
+        return loggedInUser;
     }
+
+
 }

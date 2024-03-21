@@ -7,7 +7,7 @@ public class User {
     protected String password;
     protected UserType userType;
 
-    protected User(String username, String password, UserType userType) {
+    public User(String username, String password, UserType userType) {
         this.username = username;
         this.password = password;
         this.userType = userType;

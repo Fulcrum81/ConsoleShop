@@ -5,13 +5,25 @@ import users.Seller;
 import users.User;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
 
-    static ArrayList<User> users;
+    static ArrayList<User> users = new ArrayList<>();
 
     public static void main(String[] args) {
+        User newUser = new Admin("alskdj", "askjdhakj");
+
+//        if (newUser instanceof Admin) {
+//            AdminMenu.printMenu();
+//        } else if (newUser instanceof Seller) {
+//            System.out.println("\nYou are logged in as seller");
+//        } else if (newUser instanceof Buyer) {
+//            System.out.println("\nYou are logged in as buyer");
+//        }
+
         users.add(new Admin("admin", "admin"));
         users.add(new Seller("abcInvest", "qwerty", "ABC Invest Group",
                 "Minsk, Nemiga 15", "www.abc-invest.by"));
